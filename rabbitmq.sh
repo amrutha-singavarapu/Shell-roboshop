@@ -30,10 +30,10 @@ VALIDATE(){
 cp $SCRIPT_DIR/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 VALIDATE $? "Added RabbitMQ.repo"
 
-dnf install rabbitmq-server -y
+dnf install rabbitmq-server -y &>>$LOGS_FILE
 VALIDATE $? "Installing RabbitMQ server"
 
-systemctl enable rabbitmq-server
+systemctl enable rabbitmq-server &>>$LOGS_FILE
 systemctl start rabbitmq-server
 VALIDATE $? "Enable and started RabbitMQ"
 
